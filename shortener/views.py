@@ -1,8 +1,9 @@
 from django.shortcuts import render, reverse
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.hashers import PBKDF2PasswordHasher
+import random
 
 from .models import *
 
@@ -11,7 +12,7 @@ from .models import *
 def index(request):
   if not request.user.is_authenticated:
     return HttpResponseRedirect(reverse('login'))
-  return render(request, 'dashboard.html')
+  return render(request, 'dashboard.html', context = {'urls': request.user.urls.all()})
 
 def register(request):
   if request.method == "POST":
@@ -45,9 +46,26 @@ def login_user(request):
 
 def new_url(request):
   if request.method == "POST":
-    pass
+    print(request.POST)
+    url = request.POST['url']
+    Url.objects.create(redirect = url, creator = request.user, alias = generate_random_string(10))
+    return HttpResponseRedirect(reverse('dashboard'))
   return render(request, 'newurl.html')
 
-def get_url(request, url_id):
-  pass
+def get_url(request, url_alias):
+  try:
+    url = Url.objects.get(alias = url_alias)
+  except Http404:
+    return render(request, '404.html')
+  return HttpResponseRedirect(url.redirect)
 
+def generate_random_string(length):
+  characters = ['abcdefghijklmopqrstuvwxyz0123456789-'[i] for i in range(0, len('abcdefghijklmopqrstuvwxyz0123456789-'))]
+  return_stuff = ''
+  for i in range(0, length):
+    return_stuff += characters[random.randint(0, len(characters)-1)]
+  return return_stuff
+
+def logout_user(request):
+  logout(request)
+  return HttpResponseRedirect(reverse('login'))

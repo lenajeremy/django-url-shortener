@@ -1,5 +1,15 @@
+{% extends 'layout.html' %}
 {% block title %}Welcome {{user}} {% endblock %}
 {% block body %}
 <h1>Welcome {{user}}</h1>
-<a href = "{% url 'new_url' %}"
+<a href = "{% url 'new_url' %}">Generate a new link for redirection</a>
+<h3>Your Urls</h3>
+<ul>
+  {% for url in urls %}
+    <li><a href = "{{url.redirect}}">http://localhost:8000/urls/{{url.alias}}</a></li>
+  {% empty %}
+    <li>You have created no urls yet</li>
+  {% endfor %}
+</ul>
+<a href = "{% url 'logout' %}">Logout</a>
 {% endblock%}
