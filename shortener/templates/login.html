@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block title%}Login{% endblock title%}
+{% block body %}
+<form action="{% url 'login'%}" method="post">
+  {% if error %}
+  <p>{{error}}</p>
+  {% endif %}
+  {% csrf_token %}
+  <input type="text" name="username" id="username" placeholder="Enter your username">
+  <br/>
+  <input type="password" name="password" id="password" placeholder = "enter your password">
+  <br/>
+  <input type = 'submit' name = 'submit' value = 'login'>
+  <input type="reset" value="clear fields">
+</form>
+<p>Don't have an account already?? Create one <a href = "{% url 'register' %}">here</a></p>
+{% endblock %}
