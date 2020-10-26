@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block title %}NEW URL {% endblock %}
+{% block body %}
+<form method="POST" action = "{% url 'new_url' %}" autocomplete="off">
+  <input type = 'text' name = 'url' placeholder = 'Url to redirect to' id = 'url to redirect to'>
+  <input type="time" name="url_validation_duration" id="url_validation_duration">
+  <input type = 'submit' value = 'GENERATE URL'>
+</form>
+{% endblock %}
