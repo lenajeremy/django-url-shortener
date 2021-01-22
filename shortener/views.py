@@ -55,6 +55,7 @@ def new_url(request):
 def get_url(request, url_alias):
   try:
     url = Url.objects.get(alias = url_alias)
+    print(url.redirect)
   except Http404:
     return render(request, '404.html')
   return HttpResponseRedirect(url.redirect)

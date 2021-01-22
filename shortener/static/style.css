@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(233, 233, 233);
+  height: 100vh;
+  overflow: hidden;
+}
+.header {
+  padding: 20px 50px;
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header a {
+  color: white;
+}
+.logo {
+  font-size: 30px;
+  font-style: none;
+}
+.d-flex {
+  display: flex;
+}
+.align-items-center {
+  align-items: center;
+}
+.profile_image img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+  margin-left: 20px;
+  border-radius: 50%;
+}
+#section-2 {
+  display: flex;
+  height: 100%;
+}
+.dashboard,
+.other {
+  padding-top: 30px;
+}
+.dashboard {
+  width: 20%;
+  border-right: 2px solid black;
+  background: gray;
+  color: white;
+  margin-right: 40px;
+}
+.list-items {
+  padding: 30px;
+  font-size: 20px;
+  list-style: none;
+  font-family: "Courier New", Courier, monospace;
+}
+.list-item {
+  margin-bottom: 20px;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+.list-item:hover {
+  font-weight: bold;
+}
+h1 {
+  font-size: 3.5rem;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: lighter;
+  letter-spacing: 0.1rem;
+}
+svg {
+  margin-right: 10px;
+}
+input {
+  display: block;
+  padding: 10px;
+  border: 2px solid black;
+}
