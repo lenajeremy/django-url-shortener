@@ -5,13 +5,27 @@
   <h1>Welcome {{user.username.title}}</h1>
   <br>
   <h3>Your Urls</h3>
-  <ul>
-    {% for url in urls %}
-      <li><a href = "{{url.redirect}}">http://localhost:8000/urls/{{url.alias}}</a></li>
-    {% empty %}
-      <li>You have created no urls yet</li>
-    {% endfor %}
-  </ul>
+  <table class = 'table table-bordered table-hover table-info'>
+    <thead>
+      <td>Index</td>
+      <td>Alias</td>
+      <td>Link</td>
+      <td>Operation</td>
+    </thead>
+    <tbody>
+      {% for url in urls %}
+      <tr>
+        <td>{{url.id}}</td>
+        <td>{{url.text_to_remember}}</td>
+        <td><a target="_blank"  href = '{{url.redirectToUrl}}'>{{url.createdUrl}}</a></td>
+        <td><btn class = 'btn-primary btn-sm btn'>Click to copy tiny url</btn></td>
+      </tr>
+      {% empty %}
+      <li class = 'mb-3'>You have created no urls yet, <a href = "{% url 'new_url' %}">shorten a URL</a></li>
+      {% endfor %}
+    </tbody>
+  </table>
+    
   <a href = "{% url 'logout' %}">Logout</a>
 </div>
 

@@ -3,7 +3,6 @@
 
 
 {% block body %}
-<h1>This is the Register Template</h1>
 <form method = 'POST' action = "{% url 'register' %}" style = "width: 50%; margin: auto" autocomplete="off">
   {% csrf_token %}
   <input type="text" placeholder = 'Enter your first name'name="firstname" id="firstname" value = {{firstname}}>
@@ -13,7 +12,7 @@
   <input type="email" name="email_address" id="emailAddress"  placeholder = "enter your email address" value={{email_address}}><br/>
   <input type="password" name="password" id="password" placeholder="Enter your password" value = {{password}}><br/>
   <input type="password" name="conf_password" id='conf_password' placeholder="Retype your password"  value = {{conf_password}}><br/>
-  <input type="submit" value="Register">
-  <p>already have an account? <a href = "{%url 'login' %}">Login</a></p>
+  <button class = 'btn btn-block btn-success btn-sm' type="submit">Register</button>
+  <p>Already have an account? <a href = "{%url 'login' %}">Login</a></p>
 </form>
 {% endblock body%}

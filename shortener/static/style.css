@@ -50,9 +50,15 @@ body {
 .dashboard {
   width: 20%;
   border-right: 2px solid black;
-  background: gray;
+  background: rgb(160, 160, 160);
   color: white;
   margin-right: 40px;
+}
+.other {
+  margin: 0 auto;
+  text-align: center;
+  transform: scale(1.1);
+  transform-origin: top;
 }
 .list-items {
   padding: 30px;
@@ -79,7 +85,6 @@ svg {
   margin-right: 10px;
 }
 input {
-  display: block;
   padding: 10px;
   border: 2px solid black;
 }

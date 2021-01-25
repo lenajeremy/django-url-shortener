@@ -48,17 +48,19 @@ def new_url(request):
   if request.method == "POST":
     print(request.POST)
     url = request.POST['url']
-    Url.objects.create(redirect = url, creator = request.user, alias = generate_random_string(10))
+    text_to_remember =  request.POST['url_alias']
+    alias = generate_random_string(7)
+    createdUrl = 'http://localhost:8000/' + alias
+    Url.objects.create(redirectToUrl = url, creator = request.user, text_to_remember = text_to_remember, alias = alias, createdUrl = createdUrl)
     return HttpResponseRedirect(reverse('dashboard'))
   return render(request, 'newurl.html')
 
 def get_url(request, url_alias):
   try:
     url = Url.objects.get(alias = url_alias)
-    print(url.redirect)
+    return HttpResponseRedirect(url.redirectToUrl)
   except Http404:
     return render(request, '404.html')
-  return HttpResponseRedirect(url.redirect)
 
 def generate_random_string(length):
   characters = ['abcdefghijklmopqrstuvwxyz0123456789-'[i] for i in range(0, len('abcdefghijklmopqrstuvwxyz0123456789-'))]
