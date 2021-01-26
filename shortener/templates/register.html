@@ -3,16 +3,38 @@
 
 
 {% block body %}
-<form method = 'POST' action = "{% url 'register' %}" style = "width: 50%; margin: auto" autocomplete="off">
+<form method = 'POST' action = "{% url 'register' %}" autocomplete="off">
+  <h1 class = 'text-center'>Register</h1>
   {% csrf_token %}
-  <input type="text" placeholder = 'Enter your first name'name="firstname" id="firstname" value = {{firstname}}>
-  <br/>
-  <input type="text" name="lastname" id="lastname" placeholder="Enter your last Name" value = {{lastname}}><br/>
-  <input type="text" name="username" id="username" placeholder="Enter your username" value = {{username}}><br/>
-  <input type="email" name="email_address" id="emailAddress"  placeholder = "enter your email address" value={{email_address}}><br/>
-  <input type="password" name="password" id="password" placeholder="Enter your password" value = {{password}}><br/>
-  <input type="password" name="conf_password" id='conf_password' placeholder="Retype your password"  value = {{conf_password}}><br/>
-  <button class = 'btn btn-block btn-success btn-sm' type="submit">Register</button>
-  <p>Already have an account? <a href = "{%url 'login' %}">Login</a></p>
+  <div class="btn-group">
+    <input type="text" placeholder = 'First Name'name="firstname" id="firstname" value = {{firstname}}>
+    <input type="text" name="lastname" id="lastname" placeholder="Last Name" value = {{lastname}}><br/>
+  </div>
+  <input type="text" name="username" id="username" placeholder="Username" value = {{username}}><br/>
+  <input type="email" name="email_address" id="emailAddress"  placeholder = "Email" value={{email_address}}><br/>
+  <input type="password" name="password" id="password" placeholder="Password" value = {{password}}><br/>
+  <input type="password" name="conf_password" id='conf_password' placeholder="Confirm Password"  value = {{conf_password}}><br/>
+  <div>
+    <button class = 'btn btn-block btn-primary' type="submit">Register</button>
+  </div>
+  <p class = 'small'>Already have an account? <a href = "{%url 'login' %}">Login</a></p>
 </form>
 {% endblock body%}
+{% block style %}
+<style>
+  form{
+    width: 33%;
+    margin: 7% auto;
+  }
+  form input{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .btn-group{
+    width: 100%;
+  }
+  .btn-group input:first-child{
+    margin-right: 5px;
+  }
+</style>
+{% endblock style %}

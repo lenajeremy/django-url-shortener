@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block body %}
+<div class = 'container'>
+  <div class = 'row w-100'>
+    <div class="col-6">
+      <h1>How did you even get here??</h1>
+      <p class = 'lead'>It's our fault, we apologize</p>
+      <a class = 'btn btn-primary' href = {% url 'dashboard' %}>
+        Go Back Home
+      </a>
+    </div>
+    <div class="col-6">
+      <img src = {% static '404.webp' %} alt = '404'/>
+    </div>
+  </div>
+</div>
+{% endblock body%}
+
+{% block style %}
+<style>
+.dashboard{
+  display: none;
+}
+.row{
+  margin-top: 10%;
+}
+.container img{
+  object-fit: cover;
+  object-position: center;
+  width:100%;
+  transform: scale(1.4);
+}
+</style>
+{% endblock style %}

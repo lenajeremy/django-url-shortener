@@ -5,7 +5,7 @@
   <h1>Welcome {{user.username.title}}</h1>
   <br>
   <h3>Your Urls</h3>
-  <table class = 'table table-bordered table-hover table-info'>
+  <table class = 'table table-bordered table-hover table-dark w-100'>
     <thead>
       <td>Index</td>
       <td>Alias</td>
@@ -17,8 +17,8 @@
       <tr>
         <td>{{url.id}}</td>
         <td>{{url.text_to_remember}}</td>
-        <td><a target="_blank"  href = '{{url.redirectToUrl}}'>{{url.createdUrl}}</a></td>
-        <td><btn class = 'btn-primary btn-sm btn'>Click to copy tiny url</btn></td>
+        <td><input class = 'form-control small' readonly value = '{{url.createdUrl}}'/></td>
+        <td><button class = 'btn-primary btn-sm btn'>Copy URL</button><a class = 'btn-success btn-sm btn' href = {{ url.redirectToUrl }} target = '_blank' noreffernoopener>View</button></td>
       </tr>
       {% empty %}
       <li class = 'mb-3'>You have created no urls yet, <a href = "{% url 'new_url' %}">shorten a URL</a></li>

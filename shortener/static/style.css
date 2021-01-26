@@ -3,8 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+.small {
+  font-size: 0.9rem;
+}
 body {
-  background-color: rgb(233, 233, 233);
   height: 100vh;
   overflow: hidden;
 }
@@ -48,10 +50,10 @@ body {
   padding-top: 30px;
 }
 .dashboard {
+  background-color: rgb(233, 233, 233);
   width: 20%;
   border-right: 2px solid black;
-  background: rgb(160, 160, 160);
-  color: white;
+  color: black;
   margin-right: 40px;
 }
 .other {
@@ -66,10 +68,13 @@ body {
   list-style: none;
   font-family: "Courier New", Courier, monospace;
 }
+.list-item svg {
+  color: chocolate;
+}
 .list-item {
   margin-bottom: 20px;
   cursor: pointer;
-  color: white;
+  color: black;
   text-decoration: none;
 }
 .list-item:hover {
@@ -84,7 +89,30 @@ h1 {
 svg {
   margin-right: 10px;
 }
-input {
+input,
+button:not(.btn) {
   padding: 10px;
   border: 2px solid black;
+}
+.btn {
+  border-radius: 0 !important;
+  border: 2px solid black !important;
+  box-shadow: none !important;
+}
+.btn-primary {
+  background: chocolate;
+  color: white;
+}
+.btn:not(.btn-primary) {
+  background: white;
+  color: chocolate;
+}
+.btn:not(.btn-sm) {
+  padding: 10px;
+}
+.btn:hover,
+.btn:focus {
+  background: chocolate;
+  color: white;
+  opacity: 0.9;
 }

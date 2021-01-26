@@ -2,16 +2,39 @@
 {% block title%}Login{% endblock title%}
 {% block body %}
 <form action="{% url 'login'%}" method="post">
+  <h1 class = 'text-center'>Login</h1>
   {% if error %}
-  <p>{{error}}</p>
+  <div class="alert alert-danger text-center" role="alert">
+    {{error}}
+  </div>
   {% endif %}
   {% csrf_token %}
   <input type="text" name="username" id="username" placeholder="Enter your username">
   <br/>
   <input type="password" name="password" id="password" placeholder = "enter your password">
   <br/>
-  <input type = 'submit' name = 'submit' value = 'login'>
-  <input type="reset" value="clear fields">
+  <div class = 'btn-group mb-4'>
+  <button type = 'submit' class =  'btn btn-primary'>Login</button>
+  <button type="reset">Clear fields</button>
+</div>
+  <p class = 'small'>Don't have an account already?? Create one <a href = "{% url 'register' %}">here</a></p>
 </form>
-<p>Don't have an account already?? Create one <a href = "{% url 'register' %}">here</a></p>
 {% endblock %}
+{% block style %}
+<style>
+  form{
+    width: 30%;
+    margin: 12% auto;
+  }
+  form input{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .btn-group{
+    width: 100%;
+  }
+  .btn-group button{
+    width: 50%;
+  }
+</style>
+{% endblock style %}
