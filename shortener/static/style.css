@@ -6,12 +6,8 @@
 .small {
   font-size: 0.9rem;
 }
-body {
-  height: 100vh;
-  overflow: hidden;
-}
 .header {
-  padding: 20px 50px;
+  padding: 18px 50px;
   background-color: black;
   color: white;
   font-size: 18px;
@@ -24,7 +20,7 @@ body {
   color: white;
 }
 .logo {
-  font-size: 30px;
+  font-size: 25px;
   font-style: none;
 }
 .d-flex {
@@ -41,9 +37,11 @@ body {
   margin-left: 20px;
   border-radius: 50%;
 }
+input {
+  outline: none;
+}
 #section-2 {
   display: flex;
-  height: 100%;
 }
 .dashboard,
 .other {
@@ -51,8 +49,8 @@ body {
 }
 .dashboard {
   background-color: rgb(233, 233, 233);
-  width: 20%;
-  border-right: 2px solid black;
+  width: 23%;
+  border-right: 1px solid black;
   color: black;
   margin-right: 40px;
 }

@@ -3,6 +3,7 @@ from django.contrib.auth.password_validation import validate_password, Validatio
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.hashers import PBKDF2PasswordHasher
+from django.views.decorators.csrf import csrf_exempt
 import random
 
 from .models import *
@@ -54,6 +55,7 @@ def login_user(request):
 
 
 def new_url(request):
+    print(request.POST)
     if request.method == "POST":
         url = request.POST['url']
         text_to_remember = request.POST['url_alias']
@@ -85,12 +87,3 @@ def generate_random_string(length):
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse('login'))
-
-
-def delete_url(request, url_id):
-    try:
-        url = Url.objects.get(id=url_id)
-        url.delete()
-        return HttpResponseRedirect(reverse('dashboard'))
-    except Url.DoesNotExist:
-        return render(request, '404.html')

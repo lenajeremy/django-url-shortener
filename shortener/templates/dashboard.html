@@ -14,14 +14,13 @@
     </thead>
     <tbody>
       {% for url in urls %}
-      <tr>
+      <tr id = {{url.id}}>
         <td>{{url.id}}</td>
         <td>{{url.text_to_remember}}</td>
         <td><input class = 'form-control small' readonly value = '{{url.createdUrl}}'/></td>
         <td>
           <button class = 'btn-primary btn-sm btn'>Copy URL</button>
           <a class = 'btn-success btn-sm btn' href = {{ url.redirectToUrl }} target = '_blank' noreffernoopener>View</a>
-          {% comment %}<a class = 'btn btn-sm' href = {% url delete "url.id" %}>Delete</a>{% endcomment %}
         </td>
       </tr>
       {% empty %}
