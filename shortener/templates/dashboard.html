@@ -2,10 +2,10 @@
 {% block title %}Welcome {{user.username.title}} {% endblock %}
 {% block body %}
 <div class = 'other'>
-  <h1>Welcome {{user.username.title}}</h1>
+  <h1>Welcome {{user.first_name}}</h1>
   <br>
   <h3>Your Urls</h3>
-  <table class = 'table table-bordered table-hover table-dark w-100'>
+  <table class = 'table table-bordered table-hover w-100'>
     <thead>
       <td>Index</td>
       <td>Alias</td>
@@ -18,7 +18,11 @@
         <td>{{url.id}}</td>
         <td>{{url.text_to_remember}}</td>
         <td><input class = 'form-control small' readonly value = '{{url.createdUrl}}'/></td>
-        <td><button class = 'btn-primary btn-sm btn'>Copy URL</button><a class = 'btn-success btn-sm btn' href = {{ url.redirectToUrl }} target = '_blank' noreffernoopener>View</button></td>
+        <td>
+          <button class = 'btn-primary btn-sm btn'>Copy URL</button>
+          <a class = 'btn-success btn-sm btn' href = {{ url.redirectToUrl }} target = '_blank' noreffernoopener>View</a>
+          {% comment %}<a class = 'btn btn-sm' href = {% url delete "url.id" %}>Delete</a>{% endcomment %}
+        </td>
       </tr>
       {% empty %}
       <li class = 'mb-3'>You have created no urls yet, <a href = "{% url 'new_url' %}">shorten a URL</a></li>

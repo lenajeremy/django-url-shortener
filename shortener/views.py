@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse
-from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.password_validation import validate_password, ValidationError
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.hashers import PBKDF2PasswordHasher
@@ -18,7 +18,6 @@ def index(request):
 
 def register(request):
     if request.method == "POST":
-        print(request.POST)
         firstname = request.POST['firstname']
         lastname = request.POST['lastname']
         username = request.POST['username']
@@ -27,14 +26,18 @@ def register(request):
         password_confirmation = request.POST['conf_password']
 
         if password == password_confirmation:
-            hasher = PBKDF2PasswordHasher()
-            password = hasher.encode(password, salt=hasher.salt())
-            user = User.objects.create(username=username, last_name=lastname,
-                                       first_name=firstname, email=email_address, password=password)
-            login(request, user=user)
-            return HttpResponseRedirect(reverse('dashboard'))
+            try:
+                validate_password(password)
+                hasher = PBKDF2PasswordHasher()
+                password = hasher.encode(password, salt=hasher.salt())
+                user = User.objects.create(username=username, last_name=lastname,
+                                           first_name=firstname, email=email_address, password=password)
+                login(request, user=user)
+                return HttpResponseRedirect(reverse('dashboard'))
+            except Exception as e:
+                return render(request, 'register.html', context={'firstname': firstname, 'username': username, 'lastname': lastname, 'errors': e})
         else:
-            return render(request, 'register.html', context={'firstname': firstname, 'username': username, 'lastname': lastname, 'email_address': email_address, 'password': '', 'conf_password': "", 'error': 'passwords do not match'})
+            return render(request, 'register.html', context={'firstname': firstname, 'username': username, 'lastname': lastname, 'email_address': email_address, 'errors': ['Passwords do not match']})
     return render(request, 'register.html', context={'firstname': '', 'username': '', 'lastname': '', 'password': '', 'conf_password': '', 'email_address': ''})
 
 
@@ -52,7 +55,6 @@ def login_user(request):
 
 def new_url(request):
     if request.method == "POST":
-        print(request.POST)
         url = request.POST['url']
         text_to_remember = request.POST['url_alias']
         alias = generate_random_string(7)
@@ -83,3 +85,12 @@ def generate_random_string(length):
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse('login'))
+
+
+def delete_url(request, url_id):
+    try:
+        url = Url.objects.get(id=url_id)
+        url.delete()
+        return HttpResponseRedirect(reverse('dashboard'))
+    except Url.DoesNotExist:
+        return render(request, '404.html')

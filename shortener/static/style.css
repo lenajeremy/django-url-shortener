@@ -57,8 +57,7 @@ body {
   margin-right: 40px;
 }
 .other {
-  margin: 0 auto;
-  text-align: center;
+  margin-left: 40px;
   transform: scale(1.1);
   transform-origin: top;
 }
@@ -69,7 +68,7 @@ body {
   font-family: "Courier New", Courier, monospace;
 }
 .list-item svg {
-  color: chocolate;
+  color: rgb(161, 74, 11);
 }
 .list-item {
   margin-bottom: 20px;
@@ -100,19 +99,23 @@ button:not(.btn) {
   box-shadow: none !important;
 }
 .btn-primary {
-  background: chocolate;
+  background: rgb(161, 74, 11);
   color: white;
 }
 .btn:not(.btn-primary) {
   background: white;
-  color: chocolate;
+  color: rgb(161, 74, 11);
 }
 .btn:not(.btn-sm) {
   padding: 10px;
 }
 .btn:hover,
 .btn:focus {
-  background: chocolate;
+  background: rgb(161, 74, 11);
   color: white;
-  opacity: 0.9;
+  opacity: 0.8;
+}
+form a {
+  color: rgb(161, 74, 11);
+  font-weight: bold;
 }

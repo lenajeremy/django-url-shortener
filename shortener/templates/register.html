@@ -5,6 +5,15 @@
 {% block body %}
 <form method = 'POST' action = "{% url 'register' %}" autocomplete="off">
   <h1 class = 'text-center'>Register</h1>
+
+  {% if errors %}
+    {% for error in errors %}
+      <div class = 'alert alert-danger text-center' role = 'alert'>
+        {{ error }}
+      </div>
+    {% endfor %}
+  {% endif %}
+   
   {% csrf_token %}
   <div class="btn-group">
     <input type="text" placeholder = 'First Name'name="firstname" id="firstname" value = {{firstname}}>
@@ -17,14 +26,14 @@
   <div>
     <button class = 'btn btn-block btn-primary' type="submit">Register</button>
   </div>
-  <p class = 'small'>Already have an account? <a href = "{%url 'login' %}">Login</a></p>
+  <p class = 'small mt-3'>Already have an account? <a href = "{%url 'login' %}">Login</a></p>
 </form>
 {% endblock body%}
 {% block style %}
 <style>
   form{
     width: 33%;
-    margin: 7% auto;
+    margin: 5% auto;
   }
   form input{
     width: 100%;

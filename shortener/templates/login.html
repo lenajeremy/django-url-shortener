@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block title%}Login{% endblock title%}
 {% block body %}
-<form action="{% url 'login'%}" method="post">
+<form action="{% url 'login'%}" method="post" autocomplete="off">
   <h1 class = 'text-center'>Login</h1>
   {% if error %}
   <div class="alert alert-danger text-center" role="alert">
@@ -9,9 +9,9 @@
   </div>
   {% endif %}
   {% csrf_token %}
-  <input type="text" name="username" id="username" placeholder="Enter your username">
+  <input type="text" name="username" id="username" placeholder="Username">
   <br/>
-  <input type="password" name="password" id="password" placeholder = "enter your password">
+  <input type="password" name="password" id="password" placeholder = "Password">
   <br/>
   <div class = 'btn-group mb-4'>
   <button type = 'submit' class =  'btn btn-primary'>Login</button>
@@ -24,7 +24,7 @@
 <style>
   form{
     width: 30%;
-    margin: 12% auto;
+    margin: 10% auto;
   }
   form input{
     width: 100%;
@@ -35,6 +35,9 @@
   }
   .btn-group button{
     width: 50%;
+  }
+  .btn-group button:first-child{
+    margin-right: 5px;
   }
 </style>
 {% endblock style %}
