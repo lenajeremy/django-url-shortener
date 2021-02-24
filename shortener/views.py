@@ -14,7 +14,7 @@ from .models import *
 def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
-    return render(request, 'dashboard.html', context={'urls': request.user.urls.all()})
+    return render(request, 'dashboard.html', context={'urls': request.user.urls.all().reverse()})
 
 
 def register(request):
@@ -59,7 +59,7 @@ def new_url(request):
     if request.method == "POST":
         url = request.POST['url']
         text_to_remember = request.POST['url_alias']
-        alias = generate_random_string(7)
+        alias = generate_random_string(9)
         createdUrl = 'http://localhost:8000/' + alias
         Url.objects.create(redirectToUrl=url, creator=request.user,
                            text_to_remember=text_to_remember, alias=alias, createdUrl=createdUrl)
